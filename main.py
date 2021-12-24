@@ -13,7 +13,7 @@ from pyowm.utils.config import get_default_config
 # Настраиваю pyowm
 config_dict = get_default_config()
 config_dict['language'] = 'ru'
-owm = pyowm.OWM('2f83bf69db7b0d1fb4b6ad4310913922', config_dict)
+owm = pyowm.OWM('your_api_key', config_dict)
 o = owm.weather_manager().weather_at_place('Moscow,Ru')
 
 # Настраиваю pyttsx3
