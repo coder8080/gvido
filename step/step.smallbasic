@@ -1,0 +1,22 @@
+left_leg = "C"
+right_leg = "B"
+legs = left_leg + right_leg
+small_delay = 50
+average_power = 15
+deg = 360
+
+Sub go
+  rc = Motor.GetCount(right_leg)
+  lc = Motor.GetCount(left_leg)
+  diff = rc - lc
+  rp = average_power - diff
+  lp = average_power + diff
+  Motor.Start(legs, average_power)
+EndSub
+
+Motor.ResetCount(legs)
+While Motor.GetCount(right_leg) < deg
+  go()
+  Program.Delay(small_delay)
+EndWhile
+Motor.Stop(legs, "True")

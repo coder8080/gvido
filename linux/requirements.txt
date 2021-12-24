@@ -1,0 +1,5 @@
+gtts
+playsound
+pyaudio
+pyowm
+fuzzywuzzy

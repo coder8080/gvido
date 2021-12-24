@@ -1,0 +1,29 @@
+left_leg = "C"
+right_leg = "B"
+calibration_power = 10
+touch_sensor = 3
+legs = left_leg + right_leg
+
+Motor.StartSync(legs, calibration_power + 10, calibration_power)
+While Sensor.ReadPercent(touch_sensor) > 0
+EndWhile
+Motor.Stop(legs, "True")
+'калибровка правой ноги
+Motor.Start(right_leg, calibration_power)
+While Sensor.ReadPercent(touch_sensor) < 100
+EndWhile
+While Sensor.ReadPercent(touch_sensor) > 0
+EndWhile
+Motor.Stop(right_leg, "True")
+Motor.Move(right_leg, calibration_power, 90, "True")
+Motor.Wait(right_leg)
+'калибровка левой ноги
+Motor.Start(left_leg, calibration_power)
+While Sensor.ReadPercent(touch_sensor) < 100
+EndWhile
+While Sensor.ReadPercent(touch_sensor) > 0
+EndWhile
+Motor.Stop(left_leg, "True")
+Motor.Move(left_leg, -1 * calibration_power, 90, "True")
+Motor.Wait(left_leg)
+Motor.ResetCount(legs)
