@@ -55,7 +55,12 @@ def say(text: str):
     engine.runAndWait()
 
 
-def rec(text: str):
+def say_random(vars: list):
+    """Воспроизводит рандомную из предоставленных фраз"""
+    say(random.choice(vars))
+
+
+def command(text: str):
     """Основная функция (распознаёт и выполняет команды)"""
     # Вывожу, что оудалось распознать
     print('[log] Распознано:' + text)
@@ -113,11 +118,6 @@ def rec(text: str):
             say('Сначала научитесь гуглить')
 
 
-def say_random(vars: list):
-    """Воспроизводит рандомную из предоставленных фраз"""
-    say(random.choice(vars))
-
-
 # Записываю фоновый шум, чтобы не путать с речью
 with sr.Microphone(device_index=options['microphone_index']) as source:
     r.adjust_for_ambient_noise(source)
@@ -134,6 +134,6 @@ while True:
     try:
         # Пробуем распознать и соответственно исполнить команду
         text = r.recognize_google(audio, language='ru-RU')
-        rec(text.lower())
+        command(text.lower())
     except:
         print('[log] Не смог распознать')
