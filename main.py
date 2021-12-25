@@ -8,12 +8,9 @@ from fuzzywuzzy import fuzz
 import datetime
 import random
 import pyowm
-from pyowm.utils.config import get_default_config
 
 # Настраиваю pyowm
-config_dict = get_default_config()
-config_dict['language'] = 'ru'
-owm = pyowm.OWM('your_api_key', config_dict)
+owm = pyowm.OWM('your_api_key')
 o = owm.weather_manager().weather_at_place('Moscow,Ru')
 
 # Настраиваю pyttsx3
@@ -80,10 +77,10 @@ def command(text: str):
         # Выполняю команду
         if cmd == 'time':
             now = datetime.datetime.now()
-            if now.minute // 10 > 0:
-                say(f'сейчас {now.hour} {now.minute}')
-            else:
-                say(f'сейчас {now.hour} 0{now.minute}')
+            res = f'сейчас {now.hour} {now.minute}'
+            if now.minute // 10 == 0:
+                res = f'сейчас {now.hour} 0{now.minute}'
+            say(res)
         elif cmd == 'thanks':
             say_random(['рад стараться.', 'вы лучший'])
         elif cmd == 'humor':
