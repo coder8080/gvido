@@ -98,10 +98,6 @@ def command(text: str):
             say('Сначала научитесь гуглить')
 
 
-# Записываю фоновый шум, чтобы не путать с речью
-with sr.Microphone(device_index=options['microphone_index']) as source:
-    r.adjust_for_ambient_noise(source)
-
 # Здороваюсь
 say('Доброго времени суток')
 say('Я вас слушаю')

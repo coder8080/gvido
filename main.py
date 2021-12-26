@@ -10,7 +10,7 @@ import random
 import pyowm
 
 # Настраиваю pyowm
-owm = pyowm.OWM('your_api_key')
+owm = pyowm.OWM('2f83bf69db7b0d1fb4b6ad4310913922')
 o = owm.weather_manager().weather_at_place('Moscow,Ru')
 
 # Настраиваю pyttsx3
@@ -114,10 +114,6 @@ def command(text: str):
             webbrowser.open('https://docs.python.org/3/index.html', new=2)
             say('Сначала научитесь гуглить')
 
-
-# Записываю фоновый шум, чтобы не путать с речью
-with sr.Microphone(device_index=options['microphone_index']) as source:
-    r.adjust_for_ambient_noise(source)
 
 # Здороваюсь
 say('Доброго времени суток')
